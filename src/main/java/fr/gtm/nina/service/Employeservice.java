@@ -1,13 +1,11 @@
 package fr.gtm.nina.service;
 
-import fr.gtm.nina.dao.EmployeDao2;
 import fr.gtm.nina.dao.IEmployeDao;
 import fr.gtm.nina.domaine.Employe;
 
-public class Employeservice {
-	private IEmployeDao employeDao;
+public class EmployeService {
 	
-	
+	private IEmployeDao employeDao;	
 	
 	public void setEmployeDao(IEmployeDao employeDao) {
 		this.employeDao = employeDao;

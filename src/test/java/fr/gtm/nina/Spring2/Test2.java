@@ -18,10 +18,10 @@ public class Test2 extends TestCase {
 	@Override
 	protected void setUp() throws Exception{
 		super.setUp();
-		emp=new Employe(6,"jean", "mdpobjis", "Jean", "DUPONT", "jean.dupont@objis.com", "employe");
+		emp=new Employe(7,"jean", "mdpobjis", "Jean", "DUPONT", "jean.dupont@objis.com", "employe");
 		appContext = new ClassPathXmlApplicationContext("spring-data.xml");
 		
-		springDao = (IEmployeDao) appContext.getBean("employedao");
+		springDao = (IEmployeDao) appContext.getBean("employeDao");
 	};
 	
 

@@ -8,49 +8,50 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import fr.gtm.nina.dao.EmployeDao;
+import fr.gtm.nina.config.DaoConfig;
+import fr.gtm.nina.config.ServiceConfig;
 import fr.gtm.nina.dao.EmployeDao2;
 import fr.gtm.nina.domaine.Employe;
-import fr.gtm.nina.service.Employeservice;
+import fr.gtm.nina.service.EmployeService;
 
 public class AppTest {
 
 	private Employe emp;
-	private String beanDataSource;
 	private EmployeDao2 dao;
-	private Employeservice serv;
+	private EmployeService serv;
+	private JdbcTemplate jdbcT;
 
 	@Before
 	public void setUp() throws Exception {
-		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(
-				new String[] {"spring-data.xml"});
-		
+
+		ConfigurableApplicationContext appContext = new AnnotationConfigApplicationContext(DaoConfig.class,
+				ServiceConfig.class);
+
 		emp = new Employe(5, "morad", "mdpobjis", "Morad", "HANAFI", "morad.hanafi@objis.com", "employe");
 		dao = (EmployeDao2) appContext.getBean("employeDao");
-		serv = (Employeservice) appContext.getBean("employeService");
+		serv = (EmployeService) appContext.getBean("employeService");
+		jdbcT =(JdbcTemplate) appContext.getBean("jdbcTemplate");
 
 	}
 
 	@After
 	public void tearDown() throws Exception {
+
 		emp = null;
+
 	}
 
 	// save emp
-	// @Test
+	//@Test
 	public void testSaveEmploye() {
 		dao.saveEmploye(emp);
 	}
 
 	// get emp by id
-	@Test
-	public void testGetEmployeById() {
-		Employe employe = dao.getEmployeById(2);
-		assertNotNull(employe);
-		assertEquals("Samb", employe.getNom());
-	}
 
 	// count emp
 	@Test
@@ -69,16 +70,23 @@ public class AppTest {
 	}
 	
 	@Test
+	public void testGetEmployeById() {
+		Employe employe = dao.getEmployeById(2);
+		assertNotNull(employe);
+		assertEquals("Samb", employe.getNom());
+	}
+
+
+	@Test
 	public void testGetAllEmployes() {
 		List<Employe> employes = dao.getAllEmployes();
 		assertNotNull(employes);
 	}
-	
+
 	@Test
 	public void testprintEmploye() {
 		serv.printEmployebyId(2);
-		
+
 	}
-	
-	
+
 }
