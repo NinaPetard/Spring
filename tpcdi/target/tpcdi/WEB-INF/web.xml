@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee"
+	version="2.4" id="WebApp_ID">
+
+	<display-name>TP CDI</display-name>
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Chargement conteneur CDI -->
+
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>fr.gtm.nina.servlet.HelloCdiServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/hellocdi</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>HelloCdiServlet</servlet-name>
+		<servlet-class>fr.gtm.nina.cdi.servlet.HelloCdiServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>HelloCdiServlet</servlet-name>
+		<url-pattern>/HelloCdiServlet</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
