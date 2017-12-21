@@ -5,6 +5,7 @@
 	<groupId>fr.gtm.nina</groupId>
 	<artifactId>Spring2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<name>Spring2</name>
 	<url>http://maven.apache.org</url>
